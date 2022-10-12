@@ -1,9 +1,9 @@
-<div class="row vh-100 vw-100">
-    <div class="col-4">
+<div class="news-page row vh-100 vw-100">
+    <div class="shadow right-side">
         <ul
             ngbNav
             [activeId]="route.fragment | async"
-            class="nav-pills side-nav"
+            class="nav-pills side-nav ps-3"
             orientation="vertical"
         >
             <li [ngbNavItem]="link.fragment" *ngFor="let link of links" class="secondary">
@@ -11,10 +11,20 @@
             </li>
         </ul>
         <div class="d-grid mt-2">
-            <button type="button" class="btn btn-secondary" (click)="open()">
+            <button type="button" class="btn btn-secondary" (click)="showModal()">
                 <i class="fa-solid fa-plus"></i> ADD
             </button>
         </div>
     </div>
-    <div class="col">Active: {{ active }}</div>
+    <div class="col ps-4 py-4 news-content">
+        <div class="card h-100">
+            <div class="card-body news-card">
+                <button type="button"  (click)="openNewsWebpage('https://phanx-web-dev.web.app')"
+                    *ngFor="let link of links"
+                    class="btn btn-link text-start"
+                    >{{ link.title }}</button
+                >
+            </div>
+        </div>
+    </div>
 </div>

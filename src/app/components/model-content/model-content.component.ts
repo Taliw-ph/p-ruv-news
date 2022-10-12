@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
+import { NewsService } from 'src/app/services/news/news.service'
 import { NewsPageComponent } from '../news-page/news-page.component'
 
 @Component({
@@ -9,18 +10,20 @@ import { NewsPageComponent } from '../news-page/news-page.component'
     styleUrls: ['./model-content.component.scss'],
 })
 export class ModelContentComponent {
-    @Input() name?: string
-
     newsForm = new FormGroup({
         title: new FormControl('', Validators.required),
         url: new FormControl('', [Validators.required, Validators.pattern('http(s)?://.+')]),
     })
 
-    constructor(public activeModal: NgbActiveModal) {}
+    constructor(public activeModal: NgbActiveModal, private newsService: NewsService) {}
 
     onCancel() {
-        this.activeModal.close('Modal Closed')
+        this.activeModal.close('User Cancel')
     }
 
-    onSubmit() {}
+    onSubmit() {
+        this.newsService.addNews(this.newsForm.value).subscribe((res) => {
+            this.activeModal.close('News Added')
+        })
+    }
 }

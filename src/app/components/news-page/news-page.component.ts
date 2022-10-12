@@ -31,7 +31,11 @@ export class NewsPageComponent implements OnInit {
         console.log('fetching data')
     }
 
-    open() {
+    showModal() {
         this.modalService.open(ModelContentComponent)
+    }
+
+    openNewsWebpage(url: string) {
+        window.open(url, '_blank')
     }
 }
