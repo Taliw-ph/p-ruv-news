@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <h4 class="modal-title">Add RSS!</h4>
+    <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="activeModal.dismiss('Cross click')"
+    ></button>
+</div>
+<form [formGroup]="newsForm" (ngSubmit)="onSubmit()">
+    <div class="modal-body">
+        <div class="form-floating mb-3">
+            <input
+                type="text"
+                class="form-control"
+                id="titleInput"
+                placeholder="Title"
+                formControlName="title"
+            />
+            <label for="floatingInput">Title</label>
+        </div>
+        <div class="form-floating">
+            <input
+                type="url"
+                class="form-control"
+                id="rssUrlInput"
+                placeholder="RSS Url"
+                formControlName="url"
+            />
+            <label for="rssUrlInput">RSS Url</label>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="onCancel()">
+            <i class="fa-solid fa-xmark"></i> Close
+        </button>
+        <button type="submit" class="btn btn-success" [disabled]="newsForm.invalid">
+            <i class="fa-regular fa-floppy-disk"></i> Submit
+        </button>
+    </div>
+</form>

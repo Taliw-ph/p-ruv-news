@@ -1,0 +1,20 @@
+<div class="row vh-100 vw-100">
+    <div class="col-4">
+        <ul
+            ngbNav
+            [activeId]="route.fragment | async"
+            class="nav-pills side-nav"
+            orientation="vertical"
+        >
+            <li [ngbNavItem]="link.fragment" *ngFor="let link of links" class="secondary">
+                <a ngbNavLink routerLink="." [fragment]="link.fragment">{{ link.title }}</a>
+            </li>
+        </ul>
+        <div class="d-grid mt-2">
+            <button type="button" class="btn btn-secondary" (click)="open()">
+                <i class="fa-solid fa-plus"></i> ADD
+            </button>
+        </div>
+    </div>
+    <div class="col">Active: {{ active }}</div>
+</div>
